@@ -1,0 +1,295 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/8/2026 10:30:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ATEF"
+  DTS:CreatorName="ATEF\moham"
+  DTS:DTSID="{B4923280-5677-41B3-820C-0474875993DB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="01_Load_Dimentions"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{4427ACA3-3299-40FD-9CD9-90B16E3A9254}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load_Dimentions"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{AAEF7EAD-7DCA-4EEC-B1D3-D98539B41860}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load_Dimentions">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load_Dimentions\Load_from_source_to_Dim_Coaches"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{888067DC-2AD3-4E0E-9E4E-747487B7AB44}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load_from_source_to_Dim_Coaches"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>From Source to Dim_Coaches.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Dimentions\Load_from_source_to_Dim_Leagues"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{C673C8E2-9817-457A-8549-FCB44AC4A2CE}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load_from_source_to_Dim_Leagues"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>From Source to Dim_Leagues.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Dimentions\Load_from_source_to_Dim_Score_Junk"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{CEC4F8C7-78F6-473A-80BD-55200D51203D}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load_from_source_to_Dim_Score_Junk"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>From Source to Dim_Score_junk.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Dimentions\Load_from_source_to_Dim_Stadium"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{36CD436F-4574-4E1A-B250-AC799C2F0556}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load_from_source_to_Dim_Stadium"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>From Source to Dim_Stadium.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Dimentions\Load_from_source_to_Dim_Team"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{3DAA81DA-ABF0-42CB-8801-8CFD66CE536B}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load_from_source_to_Dim_Team"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>From Source to Dim_Team.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Dimentions.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{CBE4A946-55E9-46DA-AA03-42502D8D8D1B}"
+          DTS:From="Package\Load_Dimentions\Load_from_source_to_Dim_Coaches"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load_Dimentions\Load_from_source_to_Dim_Leagues" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Dimentions.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{FF00389A-7620-408A-9567-CB3454FFC698}"
+          DTS:From="Package\Load_Dimentions\Load_from_source_to_Dim_Leagues"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load_Dimentions\Load_from_source_to_Dim_Score_Junk" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Dimentions.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{97C8C5F8-57AF-4D1A-9B0D-69753CEA955C}"
+          DTS:From="Package\Load_Dimentions\Load_from_source_to_Dim_Score_Junk"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load_Dimentions\Load_from_source_to_Dim_Stadium" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Dimentions.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{5142AFE6-C753-4F74-ACE0-16C414D62CDF}"
+          DTS:From="Package\Load_Dimentions\Load_from_source_to_Dim_Stadium"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Load_Dimentions\Load_from_source_to_Dim_Team" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="250.4,41.6"
+          Id="Package\Load_Dimentions\Load_from_source_to_Dim_Coaches"
+          TopLeft="30.3333224968782,22.0833322229154" />
+        <NodeLayout
+          Size="249.6,41.6"
+          Id="Package\Load_Dimentions\Load_from_source_to_Dim_Leagues"
+          TopLeft="37.8333220870962,92.9333317302334" />
+        <NodeLayout
+          Size="264,41.6"
+          Id="Package\Load_Dimentions\Load_from_source_to_Dim_Score_Junk"
+          TopLeft="39.4999886627003,163.133331242071" />
+        <NodeLayout
+          Size="248,41.6"
+          Id="Package\Load_Dimentions\Load_from_source_to_Dim_Stadium"
+          TopLeft="43.6666551017104,234.199997414549" />
+        <NodeLayout
+          Size="236,41.6"
+          Id="Package\Load_Dimentions\Load_from_source_to_Dim_Team"
+          TopLeft="51.1666546919285,305.266663587027" />
+        <EdgeLayout
+          Id="Package\Load_Dimentions.PrecedenceConstraints[Constraint]"
+          TopLeft="159.083322291987,63.6833322229154">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.2499995073181"
+              Start="0,0"
+              End="0,21.7499995073181">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.7499995073181" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Dimentions.PrecedenceConstraints[Constraint 1]"
+          TopLeft="162.633322087096,134.533331730233">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.86666657560409,28.5999995118379"
+              Start="0,0"
+              End="8.86666657560409,21.0999995118379">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.2999997559189" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.2999997559189"
+                    Point2="0,14.2999997559189"
+                    Point3="4,14.2999997559189" />
+                  <mssgle:LineSegment
+                    End="4.86666657560409,14.2999997559189" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.86666657560409,14.2999997559189"
+                    Point2="8.86666657560409,14.2999997559189"
+                    Point3="8.86666657560409,18.2999997559189" />
+                  <mssgle:LineSegment
+                    End="8.86666657560409,21.0999995118379" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Dimentions.PrecedenceConstraints[Constraint 2]"
+          TopLeft="169.583321882205,204.733331242071">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.4666661724779"
+              Start="0,0"
+              End="0,21.9666661724779">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9666661724779" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load_Dimentions.PrecedenceConstraints[Constraint 3]"
+          TopLeft="168.416654896819,275.799997414549">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.4666661724781"
+              Start="0,0"
+              End="0,21.9666661724781">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9666661724781" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="326.4,401.6"
+          Size="326.4,444.8"
+          Id="Package\Load_Dimentions"
+          TopLeft="278.333318125871,70.199999511838" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2152 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/7/2026 7:12:48 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-4LPQF77"
+  DTS:CreatorName="DESKTOP-4LPQF77\Dell"
+  DTS:DTSID="{B324D0E4-430C-47FE-BFBF-5EB7D8276066}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{E7796191-2288-4B99-8458-676037381D45}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5C6A212C-905B-4A92-92AB-C6AFA79B97DC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Last_Extract_Date">
+      <DTS:VariableValue
+        DTS:DataType="7">1/1/1899</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Get Last Extract Time"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1F645E6F-6DD5-4205-89E2-AD141EBDFB63}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Last Extract Time"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A4F7990-A602-46D7-BD0D-426A0962F87C}"
+          SQLTask:SqlStatementSource="SELECT last_extract_date&#xA;FROM   STG.config_table&#xA;WHERE (table_name = 'teams')"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Last_Extract_Date" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Dim Team"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7E48C75A-50E4-49D8-993E-D0278022FC6F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Dim Team"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Dim Team\Add SCD Cols"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add SCD Cols"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Dim Team\Add SCD Cols.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load Dim Team\Add SCD Cols.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Output].Columns[is_current]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Output].Columns[is_current]"
+                      name="is_current"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Output].Columns[end_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Output].Columns[end_date]"
+                      name="end_date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)"1-1-9999"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)"1-1-9999"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load Dim Team\Add SCD Cols.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Dim Team\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Dim Team\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Conditional Split.Inputs[Conditional Split Input].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="name"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[name]" />
+                    <inputColumn
+                      refId="Package\Load Dim Team\Conditional Split.Inputs[Conditional Split Input].Columns[founded_year]"
+                      cachedDataType="i4"
+                      cachedName="founded_year"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[founded_year]" />
+                    <inputColumn
+                      refId="Package\Load Dim Team\Conditional Split.Inputs[Conditional Split Input].Columns[Dim_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Dim_Name"
+                      lineageId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output].Columns[Dim_Name]" />
+                    <inputColumn
+                      refId="Package\Load Dim Team\Conditional Split.Inputs[Conditional Split Input].Columns[Dim_Founded_year]"
+                      cachedDataType="i4"
+                      cachedName="Dim_Founded_year"
+                      lineageId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output].Columns[Dim_Founded_year]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Dim Team\Conditional Split.Outputs[changed]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="changed"
+                  synchronousInputId="Package\Load Dim Team\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[founded_year]} != #{Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output].Columns[Dim_Founded_year]} || #{Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[name]} != #{Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output].Columns[Dim_Name]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">founded_year != Dim_Founded_year || name != Dim_Name</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Dim Team\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Load Dim Team\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Dim Team\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Load Dim Team\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Dim Team\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Dim Team\Dim Team DST"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Dim Team DST"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DWH].[Dim_Team]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Dim Team\Dim Team DST.Connections[OleDbConnection]"
+                  connectionManagerID="{5A4F7990-A602-46D7-BD0D-426A0962F87C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.European_Football_Leagues_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].Columns[team_id]"
+                      cachedDataType="i4"
+                      cachedName="team_id"
+                      externalMetadataColumnId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[Team_id]"
+                      lineageId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[team_id]" />
+                    <inputColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[name]" />
+                    <inputColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].Columns[founded_year]"
+                      cachedDataType="i4"
+                      cachedName="founded_year"
+                      externalMetadataColumnId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[Founded_year]"
+                      lineageId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[founded_year]" />
+                    <inputColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].Columns[updated_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="updated_at"
+                      externalMetadataColumnId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[Start_date]"
+                      lineageId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[updated_at]" />
+                    <inputColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].Columns[is_current]"
+                      cachedDataType="i4"
+                      cachedName="is_current"
+                      externalMetadataColumnId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[Current_flag]"
+                      lineageId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Output].Columns[is_current]" />
+                    <inputColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].Columns[end_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="end_date"
+                      externalMetadataColumnId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[End_date]"
+                      lineageId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Output].Columns[end_date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[Team_key]"
+                      dataType="i4"
+                      name="Team_key" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[Team_id]"
+                      dataType="i4"
+                      name="Team_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[Founded_year]"
+                      dataType="i4"
+                      name="Founded_year" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[Start_date]"
+                      dataType="dbTimeStamp"
+                      name="Start_date" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[End_date]"
+                      dataType="dbTimeStamp"
+                      name="End_date" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input].ExternalColumns[Current_flag]"
+                      dataType="bool"
+                      name="Current_flag" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Dim Team\Dim Team DST.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\Dim Team DST.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\Dim Team DST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\Dim Team DST.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Dim Team\Lookup_on_Dim"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup_on_Dim"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT *
+FROM DWH.Dim_Team
+WHERE Current_flag = 1;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT *
+FROM DWH.Dim_Team
+WHERE Current_flag = 1;) [refTable]
+where [refTable].[Team_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Team_key" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Team_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Founded_year" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Start_date" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="End_date" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Current_flag" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[team_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Dim Team\Lookup_on_Dim.Connections[OleDbConnection]"
+                  connectionManagerID="{5A4F7990-A602-46D7-BD0D-426A0962F87C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.European_Football_Leagues_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Dim Team\Lookup_on_Dim.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Lookup_on_Dim.Inputs[Lookup Input].Columns[team_id]"
+                      cachedDataType="i4"
+                      cachedName="team_id"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[team_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Team_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load Dim Team\Lookup_on_Dim.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output].Columns[Dim_Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output].Columns[Dim_Name]"
+                      name="Dim_Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Name</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output].Columns[Dim_Founded_year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output].Columns[Dim_Founded_year]"
+                      name="Dim_Founded_year"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Founded_year</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load Dim Team\Lookup_on_Dim.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load Dim Team\Lookup_on_Dim.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Dim Team\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE DWH.Dim_Team
+
+SET
+ 
+    End_date = ?,
+ 
+    Current_flag = 0
+WHERE Team_id = ?
+</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Dim Team\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{5A4F7990-A602-46D7-BD0D-426A0962F87C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.European_Football_Leagues_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Dim Team\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Dim Team\OLE DB Command.Inputs[OLE DB Command Input].Columns[updated_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="updated_at"
+                      externalMetadataColumnId="Package\Load Dim Team\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[updated_at]" />
+                    <inputColumn
+                      refId="Package\Load Dim Team\OLE DB Command.Inputs[OLE DB Command Input].Columns[team_id]"
+                      cachedDataType="i4"
+                      cachedName="team_id"
+                      externalMetadataColumnId="Package\Load Dim Team\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[team_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbTimeStamp"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Dim Team\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Load Dim Team\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Dim Team\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Load Dim Team\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Dim Team\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Dim Team\STG teams"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="STG teams"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[STG].[teams]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Dim Team\STG teams.Connections[OleDbConnection]"
+                  connectionManagerID="{5A4F7990-A602-46D7-BD0D-426A0962F87C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.European_Football_Leagues_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[team_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[team_id]"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[team_id]"
+                      name="team_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                      length="255"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[founded_year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[founded_year]"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[founded_year]"
+                      name="founded_year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[updated_at]"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[updated_at]"
+                      name="updated_at"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[stadium_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[stadium_id]"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[stadium_id]"
+                      name="stadium_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[league_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[league_id]"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[league_id]"
+                      name="league_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[coach_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[coach_id]"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[coach_id]"
+                      name="coach_id"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[team_id]"
+                      dataType="i4"
+                      name="team_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="255"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[founded_year]"
+                      dataType="i4"
+                      name="founded_year" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[updated_at]"
+                      dataType="dbTimeStamp"
+                      name="updated_at" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[stadium_id]"
+                      dataType="i4"
+                      name="stadium_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[league_id]"
+                      dataType="i4"
+                      name="league_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].ExternalColumns[coach_id]"
+                      dataType="i4"
+                      name="coach_id" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[team_id]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[team_id]"
+                      name="team_id" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[founded_year]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[founded_year]"
+                      name="founded_year" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[stadium_id]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[stadium_id]"
+                      name="stadium_id" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[league_id]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[league_id]"
+                      name="league_id" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[coach_id]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[coach_id]"
+                      name="coach_id" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[updated_at]"
+                      name="updated_at" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Dim Team\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Load Dim Team\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Union All.Inputs[Union All Input 1].Columns[team_id]"
+                      cachedDataType="i4"
+                      cachedName="team_id"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[team_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[team_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Union All.Inputs[Union All Input 1].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="name"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Union All.Inputs[Union All Input 1].Columns[founded_year]"
+                      cachedDataType="i4"
+                      cachedName="founded_year"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[founded_year]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[founded_year]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Union All.Inputs[Union All Input 1].Columns[updated_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="updated_at"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[updated_at]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[updated_at]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Union All.Inputs[Union All Input 1].Columns[Dim_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Dim_Name"
+                      lineageId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output].Columns[Dim_Name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[Dim_Name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Union All.Inputs[Union All Input 1].Columns[Dim_Founded_year]"
+                      cachedDataType="i4"
+                      cachedName="Dim_Founded_year"
+                      lineageId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output].Columns[Dim_Founded_year]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[Dim_Founded_year]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load Dim Team\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Union All.Inputs[Union All Input 2].Columns[team_id]"
+                      cachedDataType="i4"
+                      cachedName="team_id"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[team_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[team_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Union All.Inputs[Union All Input 2].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="name"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Union All.Inputs[Union All Input 2].Columns[founded_year]"
+                      cachedDataType="i4"
+                      cachedName="founded_year"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[founded_year]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[founded_year]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Dim Team\Union All.Inputs[Union All Input 2].Columns[updated_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="updated_at"
+                      lineageId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output].Columns[updated_at]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[updated_at]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load Dim Team\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Dim Team\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[team_id]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[team_id]"
+                      name="team_id" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[founded_year]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[founded_year]"
+                      name="founded_year" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[updated_at]"
+                      name="updated_at" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[Dim_Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[Dim_Name]"
+                      name="Dim_Name" />
+                    <outputColumn
+                      refId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[Dim_Founded_year]"
+                      dataType="i4"
+                      lineageId="Package\Load Dim Team\Union All.Outputs[Union All Output 1].Columns[Dim_Founded_year]"
+                      name="Dim_Founded_year" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Dim Team.Paths[changed]"
+              endId="Package\Load Dim Team\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="changed"
+              startId="Package\Load Dim Team\Conditional Split.Outputs[changed]" />
+            <path
+              refId="Package\Load Dim Team.Paths[Derived Column Output]"
+              endId="Package\Load Dim Team\Dim Team DST.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load Dim Team\Add SCD Cols.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load Dim Team.Paths[Lookup Match Output]"
+              endId="Package\Load Dim Team\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load Dim Team.Paths[Lookup No Match Output]"
+              endId="Package\Load Dim Team\Union All.Inputs[Union All Input 2]"
+              name="Lookup No Match Output"
+              startId="Package\Load Dim Team\Lookup_on_Dim.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Load Dim Team.Paths[OLE DB Command Output]"
+              endId="Package\Load Dim Team\Union All.Inputs[Union All Input 1]"
+              name="OLE DB Command Output"
+              startId="Package\Load Dim Team\OLE DB Command.Outputs[OLE DB Command Output]" />
+            <path
+              refId="Package\Load Dim Team.Paths[OLE DB Source Output]"
+              endId="Package\Load Dim Team\Lookup_on_Dim.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Dim Team\STG teams.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load Dim Team.Paths[Union All Output 1]"
+              endId="Package\Load Dim Team\Add SCD Cols.Inputs[Derived Column Input]"
+              name="Union All Output 1"
+              startId="Package\Load Dim Team\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load STG_teams"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{FBBDD32C-24AD-4AA2-AFB6-6D4C2879DF2E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load STG_teams"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load STG_teams\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[STG].[teams]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load STG_teams\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{5A4F7990-A602-46D7-BD0D-426A0962F87C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.European_Football_Leagues_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[team_id]"
+                      cachedDataType="i4"
+                      cachedName="team_id"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[team_id]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[team_id]" />
+                    <inputColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[name]" />
+                    <inputColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[founded_year]"
+                      cachedDataType="i4"
+                      cachedName="founded_year"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[founded_year]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[founded_year]" />
+                    <inputColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[updated_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="updated_at"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[updated_at]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[updated_at]" />
+                    <inputColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[stadium_id]"
+                      cachedDataType="i4"
+                      cachedName="stadium_id"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[stadium_id]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[stadium_id]" />
+                    <inputColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[league_id]"
+                      cachedDataType="i4"
+                      cachedName="league_id"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[league_id]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[league_id]" />
+                    <inputColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[coach_id]"
+                      cachedDataType="i4"
+                      cachedName="coach_id"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[coach_id]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[coach_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[team_id]"
+                      dataType="i4"
+                      name="team_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="255"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[founded_year]"
+                      dataType="i4"
+                      name="founded_year" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[updated_at]"
+                      dataType="dbTimeStamp"
+                      name="updated_at" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[stadium_id]"
+                      dataType="i4"
+                      name="stadium_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[league_id]"
+                      dataType="i4"
+                      name="league_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[coach_id]"
+                      dataType="i4"
+                      name="coach_id" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load STG_teams\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load STG_teams\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load STG_teams\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load STG_teams\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from teams where updated_at &gt; ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{5C6A212C-905B-4A92-92AB-C6AFA79B97DC};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load STG_teams\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{C1F2AC60-D0A1-446C-ADF2-5F486CE32B79}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.European_Football_Leagues]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[team_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[team_id]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[team_id]"
+                      name="team_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                      length="255"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[founded_year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[founded_year]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[founded_year]"
+                      name="founded_year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[stadium_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[stadium_id]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[stadium_id]"
+                      name="stadium_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[league_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[league_id]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[league_id]"
+                      name="league_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[coach_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[coach_id]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[coach_id]"
+                      name="coach_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[cresturl]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cresturl]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[cresturl]"
+                      name="cresturl"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[updated_at]"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].Columns[updated_at]"
+                      name="updated_at"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[team_id]"
+                      dataType="i4"
+                      name="team_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="255"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[founded_year]"
+                      dataType="i4"
+                      name="founded_year" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[stadium_id]"
+                      dataType="i4"
+                      name="stadium_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[league_id]"
+                      dataType="i4"
+                      name="league_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[coach_id]"
+                      dataType="i4"
+                      name="coach_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[cresturl]"
+                      dataType="nText"
+                      name="cresturl" />
+                    <externalMetadataColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[updated_at]"
+                      dataType="dbTimeStamp"
+                      name="updated_at" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[team_id]"
+                      dataType="i4"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[team_id]"
+                      name="team_id" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[founded_year]"
+                      dataType="i4"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[founded_year]"
+                      name="founded_year" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[stadium_id]"
+                      dataType="i4"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[stadium_id]"
+                      name="stadium_id" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[league_id]"
+                      dataType="i4"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[league_id]"
+                      name="league_id" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[coach_id]"
+                      dataType="i4"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[coach_id]"
+                      name="coach_id" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cresturl]"
+                      dataType="nText"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[cresturl]"
+                      name="cresturl" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[updated_at]"
+                      name="updated_at" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load STG_teams.Paths[OLE DB Source Output]"
+              endId="Package\Load STG_teams\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load STG_teams\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate STG Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{74328D33-6E62-4AE6-AD12-2EC4258D89F3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate STG Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A4F7990-A602-46D7-BD0D-426A0962F87C}"
+          SQLTask:SqlStatementSource="DELETE FROM STG.teams;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Last Extract Date"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{181EA633-77E3-40A3-9B68-3C65D6C67AD7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Last Extract Date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A4F7990-A602-46D7-BD0D-426A0962F87C}"
+          SQLTask:SqlStatementSource="UPDATE STG.config_table &#xA;SET last_extract_date = (SELECT ISNULL(MAX(updated_at), last_extract_date) FROM STG.teams)&#xA;WHERE table_name = 'teams';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{85FF96DD-C344-46BF-98E8-5E8DB2206994}"
+      DTS:From="Package\Truncate STG Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get Last Extract Time" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5270BF49-6308-4FDB-8CCF-B07274A18818}"
+      DTS:From="Package\Get Last Extract Time"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load STG_teams" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1E5BD9BA-4BBA-4A8C-A580-90A360410A8E}"
+      DTS:From="Package\Load STG_teams"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load Dim Team" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{4F78E6A9-911D-4988-9783-9E767AEFA6E8}"
+      DTS:From="Package\Load Dim Team"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update Last Extract Date" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="168,42.4"
+          Id="Package\Get Last Extract Time"
+          TopLeft="264.374988181517,97.8421041888709" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Load Dim Team"
+          TopLeft="268.124988013879,244.017541282863" />
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\Load STG_teams"
+          TopLeft="268.124988013879,171.052629700823" />
+        <NodeLayout
+          Size="168,42.4"
+          Id="Package\Truncate STG Table"
+          TopLeft="267.499988041819,29.4210523085416" />
+        <NodeLayout
+          Size="198.4,42.4"
+          Id="Package\Update Last Extract Date"
+          TopLeft="247.916655716383,328.785961309254" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="349.937488111668,72.0877189752083">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25.7543852136626"
+              Start="0,0"
+              End="0,18.2543852136626">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.2543852136626" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="348.249988097698,140.242104188871">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.8105255119521"
+              Start="0,0"
+              End="0,23.3105255119521">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.3105255119521" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="346.124988013879,212.652629700823">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.36491158204"
+              Start="0,0"
+              End="0,23.86491158204">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.86491158204" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="345.620821865131,285.617541282863">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.1684200263908"
+              Start="0,0"
+              End="0,35.6684200263908">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.6684200263908" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Dim Team">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="157.6,42.4"
+          Id="Package\Load Dim Team\Conditional Split"
+          TopLeft="589.444432871209,152.622218921317" />
+        <NodeLayout
+          Size="153.6,42.4"
+          Id="Package\Load Dim Team\Dim Team DST"
+          TopLeft="296.166663303971,445.622212126388" />
+        <NodeLayout
+          Size="122.4,42.4"
+          Id="Package\Load Dim Team\Union All"
+          TopLeft="309.444440967506,271.511105823385" />
+        <NodeLayout
+          Size="157.6,42.4"
+          Id="Package\Load Dim Team\Lookup_on_Dim"
+          TopLeft="288.833330189188,128.233329749306" />
+        <NodeLayout
+          Size="148,42.4"
+          Id="Package\Load Dim Team\Add SCD Cols"
+          TopLeft="297.77777435051,367.344437443085" />
+        <NodeLayout
+          Size="170.4,42.4"
+          Id="Package\Load Dim Team\OLE DB Command"
+          TopLeft="582.499988153576,238.733328691324" />
+        <NodeLayout
+          Size="133.6,42.4"
+          Id="Package\Load Dim Team\STG teams"
+          TopLeft="297.999996582666,48.3999987951914" />
+        <EdgeLayout
+          Id="Package\Load Dim Team.Paths[Union All Output 1]"
+          TopLeft="371.277774325675,314.177772490051">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.1666649530331"
+              Start="0,0"
+              End="0,45.6666649530331">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.6666649530331" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Dim Team.Paths[OLE DB Source Output]"
+          TopLeft="366.083330052594,91.066665461858">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.166664287448"
+              Start="0,0"
+              End="0,29.666664287448">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.666664287448" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Dim Team.Paths[OLE DB Command Output]"
+          TopLeft="582.499988153576,260.066662024657">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-150.388880519403,32.7777771320609"
+              Start="0,0"
+              End="-142.888880519403,32.7777771320609">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-71.1944402597017,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-71.1944402597017,0"
+                    Point2="-75.1944402597017,0"
+                    Point3="-75.1944402597017,4" />
+                  <mssgle:LineSegment
+                    End="-75.1944402597017,28.7777771320609" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-75.1944402597017,28.7777771320609"
+                    Point2="-75.1944402597017,32.7777771320609"
+                    Point3="-79.1944402597017,32.7777771320609" />
+                  <mssgle:LineSegment
+                    End="-142.888880519403,32.7777771320609" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Dim Team.Paths[Lookup No Match Output]"
+          TopLeft="369.138885578347,170.899996415973">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,100.611109407412"
+              Start="0,0"
+              End="0,93.111109407412">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,93.111109407412" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,40.750867203706,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Dim Team.Paths[Lookup Match Output]"
+          TopLeft="446.166663522521,149.56666308264">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="143.277769348688,24.3888891720109"
+              Start="0,0"
+              End="135.777769348688,24.3888891720109">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="67.638884674344,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="67.638884674344,0"
+                    Point2="71.638884674344,0"
+                    Point3="71.638884674344,4" />
+                  <mssgle:LineSegment
+                    End="71.638884674344,20.3888891720109" />
+                  <mssgle:CubicBezierSegment
+                    Point1="71.638884674344,20.3888891720109"
+                    Point2="71.638884674344,24.3888891720109"
+                    Point3="75.638884674344,24.3888891720109" />
+                  <mssgle:LineSegment
+                    End="135.777769348688,24.3888891720109" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="23.447497955594,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Dim Team.Paths[Derived Column Output]"
+          TopLeft="372.305552160574,410.011104109751">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.6111080166365"
+              Start="0,0"
+              End="0,28.1111080166365">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.1111080166365" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Dim Team.Paths[changed]"
+          TopLeft="667.972210512393,195.288885587984">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.4444431033399"
+              Start="0,0"
+              End="0,35.9444431033399">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.9444431033399" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-19.19259765625,12.1406785829199,38.3851953125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dim Team\Dim Team DST">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dim Team\Lookup_on_Dim">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Dim Team\STG teams">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load STG_teams">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="154.4,42.4"
+          Id="Package\Load STG_teams\OLE DB Source"
+          TopLeft="304.374986393378,26.6842102333284" />
+        <NodeLayout
+          Size="174.4,42.4"
+          Id="Package\Load STG_teams\OLE DB Destination"
+          TopLeft="295.624986784533,168.999998144413" />
+        <EdgeLayout
+          Id="Package\Load STG_teams.Paths[OLE DB Source Output]"
+          TopLeft="382.333319922289,69.3508768999951">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,99.6491212444183"
+              Start="0,0"
+              End="0,92.1491212444183">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,92.1491212444183" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load STG_teams\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load STG_teams\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

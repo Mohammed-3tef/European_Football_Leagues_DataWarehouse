@@ -1,0 +1,193 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/10/2026 3:28:22 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ATEF"
+  DTS:CreatorName="ATEF\moham"
+  DTS:DTSID="{7DE14387-550E-4C47-AAD4-882951DC8372}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="02_Load_Facts"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{27CD9B4D-76BB-413D-869E-CC61251C5D22}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load_Facts"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{0B1CD45B-F5E3-47E5-92A5-E733CD86ED62}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load_Facts">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load_Facts\Load_Fact_Coach_Stadium_Performance"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{F3EF7BB0-1A42-4F41-B6D9-56542737CDCA}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load_Fact_Coach_Stadium_Performance"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Load_Fact_Coach_Stadium_Performance.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Facts\Load_Fact_Scoring_Efficiency"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{8CABC5F5-0001-459D-AF80-0B7367C921FD}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load_Fact_Scoring_Efficiency"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Load_Fact_Scoring_Efficiency.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load_Facts\Load_Fact_Team_Monthly_Stat"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{78ED6987-94DD-4C9B-8C12-3B88D21977B3}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load_Fact_Team_Monthly_Stat"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Load_Fact_Team_Monthly_Stat.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Facts.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{55E81D19-1323-4161-86CA-CF3F5A790DF2}"
+          DTS:From="Package\Load_Facts\Load_Fact_Team_Monthly_Stat"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load_Facts\Load_Fact_Scoring_Efficiency" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load_Facts.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{52791D8F-B967-46FD-BE9A-98934F0F4781}"
+          DTS:From="Package\Load_Facts\Load_Fact_Scoring_Efficiency"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load_Facts\Load_Fact_Coach_Stadium_Performance" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="226.4,41.6"
+          Id="Package\Load_Facts\Load_Fact_Team_Monthly_Stat"
+          TopLeft="33.4999874333546,22.2333322907157" />
+        <NodeLayout
+          Size="219.2,41.6"
+          Id="Package\Load_Facts\Load_Fact_Scoring_Efficiency"
+          TopLeft="37.6666555114923,92.9666653407945" />
+        <EdgeLayout
+          Id="Package\Load_Facts.PrecedenceConstraints[Constraint]"
+          TopLeft="146.983321472423,63.8333322907157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.1333330500788"
+              Start="0,0"
+              End="0,21.6333330500788">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.6333330500788" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="272.8,41.6"
+          Id="Package\Load_Facts\Load_Fact_Coach_Stadium_Performance"
+          TopLeft="33.4999907116099,168.899998354713" />
+        <EdgeLayout
+          Id="Package\Load_Facts.PrecedenceConstraints[Constraint 1]"
+          TopLeft="147.266655511492,134.566665340794">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.6333352001176,34.3333330139187"
+              Start="0,0"
+              End="22.6333352001176,26.8333330139187">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.1666665069593" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.1666665069593"
+                    Point2="0,17.1666665069593"
+                    Point3="4,17.1666665069593" />
+                  <mssgle:LineSegment
+                    End="18.6333352001176,17.1666665069593" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.6333352001176,17.1666665069593"
+                    Point2="22.6333352001176,17.1666665069593"
+                    Point3="22.6333352001176,21.1666665069593" />
+                  <mssgle:LineSegment
+                    End="22.6333352001176,26.8333330139187" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="336,239.2"
+          Size="336,282.4"
+          Id="Package\Load_Facts"
+          TopLeft="232.166654282146,119.899999204477" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

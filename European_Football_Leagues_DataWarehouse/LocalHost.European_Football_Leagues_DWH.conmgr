@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="LocalHost.European_Football_Leagues_DWH"
+  DTS:DTSID="{5A4F7990-A602-46D7-BD0D-426A0962F87C}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=.;Initial Catalog=European_Football_Leagues_DWH;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-{5A4F7990-A602-46D7-BD0D-426A0962F87C}LocalHost.European_Football_Leagues_DWH;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

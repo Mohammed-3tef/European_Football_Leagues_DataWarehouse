@@ -1,0 +1,2464 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/8/2026 7:54:59 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MOHAMED-AHMED"
+  DTS:CreatorName="MOHAMED-AHMED\VICTUS"
+  DTS:DTSID="{C531CCD6-B4F9-43F3-8D11-F71F2AEFCB6E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{EE1D36FA-158F-47B9-96A9-F241D4FD2AB2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0BCE70A0-8C41-424F-8C2D-9C03BAE4E85C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Last_Extract_Date">
+      <DTS:VariableValue
+        DTS:DataType="7">1/1/1899</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{07483a05-9250-4464-b9c0-7b14aadc64ff}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DWH].[Dim_Scoring_Junk]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{5A4F7990-A602-46D7-BD0D-426A0962F87C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.European_Football_Leagues_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Venue_type]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Venue_type"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Venue_type]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Venue_type]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Is_comeback_win]"
+                      cachedDataType="bool"
+                      cachedName="Is_comeback_win"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_comeback_win]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_comeback_win]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Is_lead_blown]"
+                      cachedDataType="bool"
+                      cachedName="Is_lead_blown"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_lead_blown]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_lead_blown]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Is_clean_sheet]"
+                      cachedDataType="bool"
+                      cachedName="Is_clean_sheet"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_clean_sheet]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_clean_sheet]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Is_second_half_specialist]"
+                      cachedDataType="bool"
+                      cachedName="Is_second_half_specialist"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_second_half_specialist]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_second_half_specialist]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Result_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Result_type"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Result_type]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Result_type]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Scoring_junk_key]"
+                      dataType="i4"
+                      name="Scoring_junk_key" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Venue_type]"
+                      dataType="wstr"
+                      length="20"
+                      name="Venue_type" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_comeback_win]"
+                      dataType="bool"
+                      name="Is_comeback_win" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_lead_blown]"
+                      dataType="bool"
+                      name="Is_lead_blown" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_clean_sheet]"
+                      dataType="bool"
+                      name="Is_clean_sheet" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_second_half_specialist]"
+                      dataType="bool"
+                      name="Is_second_half_specialist" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Result_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Result_type" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[STG].[scoring_junk]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{5A4F7990-A602-46D7-BD0D-426A0962F87C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.European_Football_Leagues_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[updated_at]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[updated_at]"
+                      name="updated_at"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Score_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Score_ID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Score_ID]"
+                      name="Score_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Match_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Match_ID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Match_ID]"
+                      name="Match_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Venue_type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Venue_type]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Venue_type]"
+                      name="Venue_type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Full_time_home]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Full_time_home]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Full_time_home]"
+                      name="Full_time_home"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Full_time_away]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Full_time_away]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Full_time_away]"
+                      name="Full_time_away"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Half_time_home]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Half_time_home]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Half_time_home]"
+                      name="Half_time_home"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Half_time_away]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Half_time_away]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Half_time_away]"
+                      name="Half_time_away"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_comeback_win]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Is_comeback_win]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_comeback_win]"
+                      name="Is_comeback_win"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_lead_blown]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Is_lead_blown]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_lead_blown]"
+                      name="Is_lead_blown"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_clean_sheet]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Is_clean_sheet]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_clean_sheet]"
+                      name="Is_clean_sheet"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_second_half_specialist]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Is_second_half_specialist]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is_second_half_specialist]"
+                      name="Is_second_half_specialist"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Result_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Result_type]"
+                      length="1"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Result_type]"
+                      name="Result_type"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[updated_at]"
+                      dataType="dbTimeStamp"
+                      name="updated_at" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Score_ID]"
+                      dataType="i4"
+                      name="Score_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Match_ID]"
+                      dataType="i4"
+                      name="Match_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Venue_type]"
+                      dataType="wstr"
+                      length="20"
+                      name="Venue_type" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Full_time_home]"
+                      dataType="i4"
+                      name="Full_time_home" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Full_time_away]"
+                      dataType="i4"
+                      name="Full_time_away" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Half_time_home]"
+                      dataType="i4"
+                      name="Half_time_home" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Half_time_away]"
+                      dataType="i4"
+                      name="Half_time_away" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Is_comeback_win]"
+                      dataType="bool"
+                      name="Is_comeback_win" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Is_lead_blown]"
+                      dataType="bool"
+                      name="Is_lead_blown" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Is_clean_sheet]"
+                      dataType="bool"
+                      name="Is_clean_sheet" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Is_second_half_specialist]"
+                      dataType="bool"
+                      name="Is_second_half_specialist" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Result_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Result_type" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Score_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Score_ID]"
+                      name="Score_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Match_ID]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Match_ID]"
+                      name="Match_ID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Venue_type]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Venue_type]"
+                      name="Venue_type" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Full_time_home]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Full_time_home]"
+                      name="Full_time_home" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Full_time_away]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Full_time_away]"
+                      name="Full_time_away" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Half_time_home]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Half_time_home]"
+                      name="Half_time_home" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Half_time_away]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Half_time_away]"
+                      name="Half_time_away" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Is_comeback_win]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Is_comeback_win]"
+                      name="Is_comeback_win" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Is_lead_blown]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Is_lead_blown]"
+                      name="Is_lead_blown" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Is_clean_sheet]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Is_clean_sheet]"
+                      name="Is_clean_sheet" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Is_second_half_specialist]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Is_second_half_specialist]"
+                      name="Is_second_half_specialist" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Result_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Result_type]"
+                      name="Result_type" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[updated_at]"
+                      name="updated_at" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Last Extract Time"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{e1e84f32-39f1-4901-8c79-1d8ba8d9467a}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Last Extract Time"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A4F7990-A602-46D7-BD0D-426A0962F87C}"
+          SQLTask:SqlStatementSource="SELECT last_extract_date&#xA;FROM   STG.config_table&#xA;WHERE (table_name = 'scores')"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Last_Extract_Date" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load To Staging Table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{c9030334-c2d6-46ee-9447-b573cde8802b}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load To Staging Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load To Staging Table\Away"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Away"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load To Staging Table\Away.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Away.Inputs[Derived Column Input].Columns[full_time_home]"
+                      cachedDataType="i4"
+                      cachedName="full_time_home"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Away.Inputs[Derived Column Input].Columns[full_time_away]"
+                      cachedDataType="i4"
+                      cachedName="full_time_away"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Away.Inputs[Derived Column Input].Columns[half_time_home]"
+                      cachedDataType="i4"
+                      cachedName="half_time_home"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Away.Inputs[Derived Column Input].Columns[half_time_away]"
+                      cachedDataType="i4"
+                      cachedName="half_time_away"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_away]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load To Staging Table\Away.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load To Staging Table\Away.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Is_comeback_win_away]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Is_comeback_win_away]"
+                      name="Is_comeback_win_away"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]} &gt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_away]} &amp;&amp; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]} &lt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]} ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">half_time_home &gt; half_time_away &amp;&amp; full_time_home &lt; full_time_away ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Is_clean_sheet_away]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Is_clean_sheet_away]"
+                      name="Is_clean_sheet_away"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]} == 0 ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">full_time_home == 0 ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Venue_Type_away]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Venue_Type_away]"
+                      name="Venue_Type_away"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Away"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Away"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Result_type_away]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Result_type_away]"
+                      name="Result_type_away"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,1,1252)(#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]} &lt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]} ? "W" : (#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]} &gt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]} ? "L" : "D"))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,1,1252)(full_time_home &lt; full_time_away ? "W" : (full_time_home &gt; full_time_away ? "L" : "D"))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[is_lead_blown]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[is_lead_blown]"
+                      name="is_lead_blown"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]} &lt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_away]}) &amp;&amp; (#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]} &gt;= #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]}) ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(half_time_home &lt; half_time_away) &amp;&amp; (full_time_home &gt;= full_time_away) ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Is_second_half_specialist]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Is_second_half_specialist]"
+                      name="Is_second_half_specialist"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]} - #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]}) &gt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]} ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(full_time_home - half_time_home) &gt; half_time_home ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load To Staging Table\Away.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load To Staging Table\Away.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Away.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Away.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load To Staging Table\Home"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Home"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load To Staging Table\Home.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Home.Inputs[Derived Column Input].Columns[full_time_home]"
+                      cachedDataType="i4"
+                      cachedName="full_time_home"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Home.Inputs[Derived Column Input].Columns[full_time_away]"
+                      cachedDataType="i4"
+                      cachedName="full_time_away"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Home.Inputs[Derived Column Input].Columns[half_time_home]"
+                      cachedDataType="i4"
+                      cachedName="half_time_home"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Home.Inputs[Derived Column Input].Columns[half_time_away]"
+                      cachedDataType="i4"
+                      cachedName="half_time_away"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_away]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load To Staging Table\Home.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load To Staging Table\Home.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_comeback_win_home]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_comeback_win_home]"
+                      name="Is_comeback_win_home"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]} &lt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_away]} &amp;&amp; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]} &gt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]} ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">half_time_home &lt; half_time_away &amp;&amp; full_time_home &gt; full_time_away ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_clean_sheet_home]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_clean_sheet_home]"
+                      name="Is_clean_sheet_home"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]} == 0 ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">full_time_away == 0 ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Venue_Type_home]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Venue_Type_home]"
+                      name="Venue_Type_home"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Home"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Home"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Result_type_home]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Result_type_home]"
+                      name="Result_type_home"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,1,1252)(#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]} &gt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]} ? "W" : (#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]} &lt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]} ? "L" : "D"))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,1,1252)(full_time_home &gt; full_time_away ? "W" : (full_time_home &lt; full_time_away ? "L" : "D"))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_lead_blown]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_lead_blown]"
+                      name="Is_lead_blown"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]} &gt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_away]}) &amp;&amp; (#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]} &lt;= #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]}) ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(half_time_home &gt; half_time_away) &amp;&amp; (full_time_home &lt;= full_time_away) ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_second_half_specialist]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_second_half_specialist]"
+                      name="Is_second_half_specialist"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]} - #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]}) &gt; #{Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]} ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(full_time_home - half_time_home) &gt; half_time_home ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load To Staging Table\Home.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load To Staging Table\Home.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Home.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Home.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load To Staging Table\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Load To Staging Table\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load To Staging Table\Multicast.Outputs[Home Path]"
+                  deleteOutputOnPathDetached="true"
+                  name="Home Path"
+                  synchronousInputId="Package\Load To Staging Table\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load To Staging Table\Multicast.Outputs[Away path]"
+                  deleteOutputOnPathDetached="true"
+                  name="Away path"
+                  synchronousInputId="Package\Load To Staging Table\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load To Staging Table\Multicast.Outputs[Multicast Output 3]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 3"
+                  synchronousInputId="Package\Load To Staging Table\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load To Staging Table\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[STG].[scoring_junk]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load To Staging Table\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{5A4F7990-A602-46D7-BD0D-426A0962F87C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.European_Football_Leagues_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[updated_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="updated_at"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[updated_at]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[updated_at]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[score_id]"
+                      cachedDataType="i4"
+                      cachedName="score_id"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Score_ID]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[score_id]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[match_id]"
+                      cachedDataType="i4"
+                      cachedName="match_id"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Match_ID]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[match_id]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Is_comeback_win]"
+                      cachedDataType="bool"
+                      cachedName="Is_comeback_win"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_comeback_win]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_comeback_win]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Is_clean_sheet]"
+                      cachedDataType="bool"
+                      cachedName="Is_clean_sheet"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_clean_sheet]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_clean_sheet]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Venue_Type]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Venue_Type"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Venue_type]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Venue_Type]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[full_time_home]"
+                      cachedDataType="i4"
+                      cachedName="full_time_home"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Full_time_home]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[full_time_home]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[full_time_away]"
+                      cachedDataType="i4"
+                      cachedName="full_time_away"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Full_time_away]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[full_time_away]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[half_time_home]"
+                      cachedDataType="i4"
+                      cachedName="half_time_home"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Half_time_home]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[half_time_home]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[half_time_away]"
+                      cachedDataType="i4"
+                      cachedName="half_time_away"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Half_time_away]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[half_time_away]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Is_lead_blown]"
+                      cachedDataType="bool"
+                      cachedName="Is_lead_blown"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_lead_blown]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_lead_blown]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Is_second_half_specialist]"
+                      cachedDataType="bool"
+                      cachedName="Is_second_half_specialist"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_second_half_specialist]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_second_half_specialist]" />
+                    <inputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Result_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Result_type"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Result_type]"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Result_type]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[updated_at]"
+                      dataType="dbTimeStamp"
+                      name="updated_at" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Score_ID]"
+                      dataType="i4"
+                      name="Score_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Match_ID]"
+                      dataType="i4"
+                      name="Match_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Venue_type]"
+                      dataType="wstr"
+                      length="20"
+                      name="Venue_type" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Full_time_home]"
+                      dataType="i4"
+                      name="Full_time_home" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Full_time_away]"
+                      dataType="i4"
+                      name="Full_time_away" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Half_time_home]"
+                      dataType="i4"
+                      name="Half_time_home" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Half_time_away]"
+                      dataType="i4"
+                      name="Half_time_away" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_comeback_win]"
+                      dataType="bool"
+                      name="Is_comeback_win" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_lead_blown]"
+                      dataType="bool"
+                      name="Is_lead_blown" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_clean_sheet]"
+                      dataType="bool"
+                      name="Is_clean_sheet" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Is_second_half_specialist]"
+                      dataType="bool"
+                      name="Is_second_half_specialist" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Result_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Result_type" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load To Staging Table\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load To Staging Table\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[scores]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load To Staging Table\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{C1F2AC60-D0A1-446C-ADF2-5F486CE32B79}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.European_Football_Leagues]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[updated_at]"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[updated_at]"
+                      name="updated_at"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[score_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[score_id]"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[score_id]"
+                      name="score_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[match_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[match_id]"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[match_id]"
+                      name="match_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[full_time_home]"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]"
+                      name="full_time_home"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[full_time_away]"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]"
+                      name="full_time_away"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[half_time_home]"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]"
+                      name="half_time_home"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_away]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[half_time_away]"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_away]"
+                      name="half_time_away"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[updated_at]"
+                      dataType="dbTimeStamp"
+                      name="updated_at" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[score_id]"
+                      dataType="i4"
+                      name="score_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[match_id]"
+                      dataType="i4"
+                      name="match_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[full_time_home]"
+                      dataType="i4"
+                      name="full_time_home" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[full_time_away]"
+                      dataType="i4"
+                      name="full_time_away" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[half_time_home]"
+                      dataType="i4"
+                      name="half_time_home" />
+                    <externalMetadataColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[half_time_away]"
+                      dataType="i4"
+                      name="half_time_away" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[score_id]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[score_id]"
+                      name="score_id" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[match_id]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[match_id]"
+                      name="match_id" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[full_time_home]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[full_time_home]"
+                      name="full_time_home" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[full_time_away]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[full_time_away]"
+                      name="full_time_away" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[half_time_home]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[half_time_home]"
+                      name="half_time_home" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[half_time_away]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[half_time_away]"
+                      name="half_time_away" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[updated_at]"
+                      name="updated_at" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load To Staging Table\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[updated_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="updated_at"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[updated_at]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[updated_at]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[score_id]"
+                      cachedDataType="i4"
+                      cachedName="score_id"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[score_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[score_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[match_id]"
+                      cachedDataType="i4"
+                      cachedName="match_id"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[match_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[match_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[Is_comeback_win_home]"
+                      cachedDataType="bool"
+                      cachedName="Is_comeback_win_home"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_comeback_win_home]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_comeback_win]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[Is_clean_sheet_home]"
+                      cachedDataType="bool"
+                      cachedName="Is_clean_sheet_home"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_clean_sheet_home]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_clean_sheet]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[Venue_Type_home]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Venue_Type_home"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Venue_Type_home]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Venue_Type]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[full_time_home]"
+                      cachedDataType="i4"
+                      cachedName="full_time_home"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[full_time_home]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[full_time_away]"
+                      cachedDataType="i4"
+                      cachedName="full_time_away"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[full_time_away]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[half_time_home]"
+                      cachedDataType="i4"
+                      cachedName="half_time_home"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[half_time_home]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[half_time_away]"
+                      cachedDataType="i4"
+                      cachedName="half_time_away"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_away]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[half_time_away]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[Is_lead_blown]"
+                      cachedDataType="bool"
+                      cachedName="Is_lead_blown"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_lead_blown]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_lead_blown]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[Is_second_half_specialist]"
+                      cachedDataType="bool"
+                      cachedName="Is_second_half_specialist"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Is_second_half_specialist]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_second_half_specialist]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1].Columns[Result_type_home]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Result_type_home"
+                      lineageId="Package\Load To Staging Table\Home.Outputs[Derived Column Output].Columns[Result_type_home]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Result_type]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[updated_at]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="updated_at"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[updated_at]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[updated_at]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[score_id]"
+                      cachedDataType="i4"
+                      cachedName="score_id"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[score_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[score_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[match_id]"
+                      cachedDataType="i4"
+                      cachedName="match_id"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[match_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[match_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[Is_clean_sheet_away]"
+                      cachedDataType="bool"
+                      cachedName="Is_clean_sheet_away"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Is_clean_sheet_away]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_clean_sheet]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[Is_comeback_win_away]"
+                      cachedDataType="bool"
+                      cachedName="Is_comeback_win_away"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Is_comeback_win_away]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_comeback_win]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[Venue_Type_away]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Venue_Type_away"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Venue_Type_away]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Venue_Type]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[is_lead_blown]"
+                      cachedDataType="bool"
+                      cachedName="is_lead_blown"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[is_lead_blown]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_lead_blown]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[Is_second_half_specialist]"
+                      cachedDataType="bool"
+                      cachedName="Is_second_half_specialist"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Is_second_half_specialist]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_second_half_specialist]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[full_time_home]"
+                      cachedDataType="i4"
+                      cachedName="full_time_home"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_home]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[full_time_home]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[full_time_away]"
+                      cachedDataType="i4"
+                      cachedName="full_time_away"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[full_time_away]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[full_time_away]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[half_time_home]"
+                      cachedDataType="i4"
+                      cachedName="half_time_home"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_home]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[half_time_home]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[half_time_away]"
+                      cachedDataType="i4"
+                      cachedName="half_time_away"
+                      lineageId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[half_time_away]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[half_time_away]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2].Columns[Result_type_away]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Result_type_away"
+                      lineageId="Package\Load To Staging Table\Away.Outputs[Derived Column Output].Columns[Result_type_away]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Result_type]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Load To Staging Table\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[updated_at]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[updated_at]"
+                      name="updated_at" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[score_id]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[score_id]"
+                      name="score_id" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[match_id]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[match_id]"
+                      name="match_id" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_comeback_win]"
+                      dataType="bool"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_comeback_win]"
+                      name="Is_comeback_win" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_clean_sheet]"
+                      dataType="bool"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_clean_sheet]"
+                      name="Is_clean_sheet" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Venue_Type]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Venue_Type]"
+                      name="Venue_Type" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[full_time_home]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[full_time_home]"
+                      name="full_time_home" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[full_time_away]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[full_time_away]"
+                      name="full_time_away" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[half_time_home]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[half_time_home]"
+                      name="half_time_home" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[half_time_away]"
+                      dataType="i4"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[half_time_away]"
+                      name="half_time_away" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_lead_blown]"
+                      dataType="bool"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_lead_blown]"
+                      name="Is_lead_blown" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_second_half_specialist]"
+                      dataType="bool"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Is_second_half_specialist]"
+                      name="Is_second_half_specialist" />
+                    <outputColumn
+                      refId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Result_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1].Columns[Result_type]"
+                      name="Result_type" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load To Staging Table.Paths[Away path]"
+              endId="Package\Load To Staging Table\Away.Inputs[Derived Column Input]"
+              name="Away path"
+              startId="Package\Load To Staging Table\Multicast.Outputs[Away path]" />
+            <path
+              refId="Package\Load To Staging Table.Paths[Derived Column Output]"
+              endId="Package\Load To Staging Table\Union All.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\Load To Staging Table\Home.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load To Staging Table.Paths[Derived Column Output1]"
+              endId="Package\Load To Staging Table\Union All.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\Load To Staging Table\Away.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load To Staging Table.Paths[Home Path]"
+              endId="Package\Load To Staging Table\Home.Inputs[Derived Column Input]"
+              name="Home Path"
+              startId="Package\Load To Staging Table\Multicast.Outputs[Home Path]" />
+            <path
+              refId="Package\Load To Staging Table.Paths[OLE DB Source Output]"
+              endId="Package\Load To Staging Table\Multicast.Inputs[Multicast Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\Load To Staging Table\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load To Staging Table.Paths[Union All Output 1]"
+              endId="Package\Load To Staging Table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\Load To Staging Table\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Staging Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6f98207f-69ad-4782-89d4-1fea5d4aba38}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Staging Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A4F7990-A602-46D7-BD0D-426A0962F87C}"
+          SQLTask:SqlStatementSource="Truncate Table [STG].[scoring_junk];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Last Extract Date"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6af20811-9b5d-4630-9dd4-673df88c4dd2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Last Extract Date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A4F7990-A602-46D7-BD0D-426A0962F87C}"
+          SQLTask:SqlStatementSource="UPDATE STG.config_table &#xA;SET last_extract_date = (SELECT ISNULL(MAX(updated_at), last_extract_date) FROM STG.scoring_junk)&#xA;WHERE table_name = 'scores';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{4C2DE12E-0DB5-48B8-B28C-7FFAF9CE8DA5}"
+      DTS:From="Package\Truncate Staging Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get Last Extract Time" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{7AC719D1-65A5-497D-A13F-8FC12C4922BC}"
+      DTS:From="Package\Get Last Extract Time"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load To Staging Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{977A2E95-1E06-43E9-944C-0410EFA32A00}"
+      DTS:From="Package\Load To Staging Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Data Flow Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{0684CEB1-E900-46EB-B8FE-C3D83F249B4A}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update Last Extract Date" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="286.666654282147,303.200000433922" />
+        <NodeLayout
+          Size="168,42.4"
+          Id="Package\Get Last Extract Time"
+          TopLeft="274.166654965116,105.266667058402" />
+        <NodeLayout
+          Size="183.2,41.6"
+          Id="Package\Load To Staging Table"
+          TopLeft="264.999988799294,207.666667058402" />
+        <NodeLayout
+          Size="191.2,41.6"
+          Id="Package\Truncate Staging Table"
+          TopLeft="264.999988799294,12.3333336648014" />
+        <NodeLayout
+          Size="198.4,42.4"
+          Id="Package\Update Last Extract Date"
+          TopLeft="263.33332222369,390.066667203042" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="359.383321882205,53.9333336648014">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.3333333936002"
+              Start="0,0"
+              End="0,43.8333333936002">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.8333333936002" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="357.383321882205,147.666667058402">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="359.233321540721,249.266667058402">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.93333337552"
+              Start="0,0"
+              End="0,46.43333337552">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.43333337552" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="362.199988252918,344.800000433922">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.2666667691204"
+              Start="0,0"
+              End="0,37.7666667691204">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.7666667691204" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Data Flow Task\OLE DB Source"
+          TopLeft="384.999994263053,9.99999985098839" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="372.92307136609,179.461536007432" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="459.761532814572,51.5999998509884">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,127.861536156444"
+              Start="0,0"
+              End="0,120.361536156444">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,120.361536156444" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load To Staging Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Load To Staging Table\Union All"
+          TopLeft="344.16664786223,203.666665250394" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Load To Staging Table\OLE DB Source"
+          TopLeft="333.333315120804,32.9333331043191" />
+        <NodeLayout
+          Size="106.4,41.6"
+          Id="Package\Load To Staging Table\Home"
+          TopLeft="613.333299822279,116.133332525757" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load To Staging Table\OLE DB Destination"
+          TopLeft="321.666649091574,292.066664635671" />
+        <NodeLayout
+          Size="104,41.6"
+          Id="Package\Load To Staging Table\Away"
+          TopLeft="77.4999957655868,118.733332507677" />
+        <NodeLayout
+          Size="119.2,41.6"
+          Id="Package\Load To Staging Table\Multicast"
+          TopLeft="355.833313891458,121.333332489596" />
+        <EdgeLayout
+          Id="Package\Load To Staging Table.Paths[OLE DB Source Output]"
+          TopLeft="412.383314506131,74.5333331043191">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.7999993852773"
+              Start="0,0"
+              End="0,39.2999993852773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.2999993852773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load To Staging Table.Paths[Home Path]"
+          TopLeft="475.033313891458,139.533332507677">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="138.299985930821,0"
+              Start="0,0"
+              End="130.799985930821,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="130.799985930821,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load To Staging Table.Paths[Derived Column Output1]"
+          TopLeft="129.499995765587,160.333332507677">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="255.999985429976,43.3333327427175"
+              Start="0,0"
+              End="255.999985429976,35.8333327427175">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.6578943871354" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.6578943871354"
+                    Point2="0,25.6578943871354"
+                    Point3="4,25.6578943871354" />
+                  <mssgle:LineSegment
+                    End="251.999985429976,25.6578943871354" />
+                  <mssgle:CubicBezierSegment
+                    Point1="251.999985429976,25.6578943871354"
+                    Point2="255.999985429976,25.6578943871354"
+                    Point3="255.999985429976,29.6578943871354" />
+                  <mssgle:LineSegment
+                    End="255.999985429976,35.8333327427175" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load To Staging Table.Paths[Derived Column Output]"
+          TopLeft="666.533299822279,157.733332525757">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-243.699985293382,45.9333327246374"
+              Start="0,0"
+              End="-243.699985293382,38.4333327246374">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.1973680606406" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.1973680606406"
+                    Point2="0,27.1973680606406"
+                    Point3="-4,27.1973680606406" />
+                  <mssgle:LineSegment
+                    End="-239.699985293382,27.1973680606406" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-239.699985293382,27.1973680606406"
+                    Point2="-243.699985293382,27.1973680606406"
+                    Point3="-243.699985293382,31.1973680606406" />
+                  <mssgle:LineSegment
+                    End="-243.699985293382,38.4333327246374" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load To Staging Table.Paths[Away path]"
+          TopLeft="355.833313891458,140.833332498637">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-174.333318125871,0"
+              Start="0,0"
+              End="-166.833318125871,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-166.833318125871,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load To Staging Table.Paths[Union All Output 1]"
+          TopLeft="405.716648476902,245.266665250394">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.7999993852773"
+              Start="0,0"
+              End="0,39.2999993852773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.2999993852773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load To Staging Table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load To Staging Table\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
