@@ -143,12 +143,20 @@ An interactive **Power BI Dashboard** was developed to visualize:
 * Stadium analytics
 
 ## Dashboard Screenshots
+
+### League & Team Performance
 | Screenshot 1 | Screenshot 2 |
 | ------------ | ------------ |
-| ![Dashboard Screenshot 1](./docs/PowerBI/screenshots/Dashboard_1.jpeg) | ![Dashboard Screenshot 2](./docs/PowerBI/screenshots/Dashboard_2.jpeg) |
-| ![Dashboard Screenshot 3](./docs/PowerBI/screenshots/Dashboard_3.jpeg) | ![Dashboard Screenshot 4](./docs/PowerBI/screenshots/Dashboard_4.jpeg) |
-| ![Dashboard Screenshot 5](./docs/PowerBI/screenshots/Dashboard_5.jpeg) |  |
+| ![Dashboard Screenshot 1](./docs/PowerBI/screenshots/Dashboard_1.png) | ![Dashboard Screenshot 2](./docs/PowerBI/screenshots/Dashboard_2.png) |
+| ![Dashboard Screenshot 3](./docs/PowerBI/screenshots/Dashboard_3.png) | ![Dashboard Screenshot 4](./docs/PowerBI/screenshots/Dashboard_4.png) |
+| ![Dashboard Screenshot 5](./docs/PowerBI/screenshots/Dashboard_5.png) |  |
 
+### Match & Scoring Analysis
+| Screenshot 1 | Screenshot 2 |
+| ------------ | ------------ |
+| ![Dashboard Screenshot 1](./docs/PowerBI/screenshots/Dashboard_6.png) | ![Dashboard Screenshot 2](./docs/PowerBI/screenshots/Dashboard_7.png) |
+| ![Dashboard Screenshot 3](./docs/PowerBI/screenshots/Dashboard_8.png) | ![Dashboard Screenshot 4](./docs/PowerBI/screenshots/Dashboard_9.png) |
+| ![Dashboard Screenshot 5](./docs/PowerBI/screenshots/Dashboard_10.png) |  |
 ---
 
 # Technologies Used
